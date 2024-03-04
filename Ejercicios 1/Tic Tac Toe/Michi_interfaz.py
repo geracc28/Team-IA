@@ -114,7 +114,7 @@ def salir():
 def main():
     global matriz, turno, persona, computador, canvas, ventana
     ventana = tk.Tk()
-    ventana.title("Tic Tac Toe")
+    ventana.title("Michi Tonto")
     ventana.geometry("800x600+10+50")
     canvas = tk.Canvas(ventana, width=800, height=600, background='goldenrod')
     canvas.pack()
