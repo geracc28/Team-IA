@@ -65,9 +65,9 @@ def juego():
 
             if ganar(matriz):
                 if turno % 2 == 0:
-                    print("**Gana el Jugador**")
-                else:
                     print("**Gana la Computadora**")
+                else:
+                    print("**Gana el Jugador**")
                 break
             elif empate(matriz):
                 print("**Empate**")
