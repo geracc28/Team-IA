@@ -91,7 +91,7 @@ def clic_casilla(event):
 # Función principal para el desarrollo del juego
 def juego(matriz, turno, persona, computador):
     if ganar(matriz):
-        print("**Gana el Jugador**" if turno % 2 == 0 else "**Gana el Computador**")
+        print("**Gana el Jugador**" if if (turno - 1) % 2 == 0 else "**Gana el Computador**")
         return True
     elif empate(matriz):
         print("**Empate**")
