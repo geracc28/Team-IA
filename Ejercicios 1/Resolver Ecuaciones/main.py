@@ -1,6 +1,6 @@
 import numpy as np
 
-def random_search(A, B, num_iterations=100000, tolerancia=100):
+def random_search(A, B, num_iterations=1000000, tolerancia=10):
     """
     Resuelve un sistema de ecuaciones mediante búsqueda aleatoria.
 
@@ -19,7 +19,7 @@ def random_search(A, B, num_iterations=100000, tolerancia=100):
 
     for _ in range(num_iterations):
         # Generar un conjunto aleatorio de valores para las variables
-        random_solution = np.random.rand(num_variables) * 100 - 50  # Rango de -50 a 50, ajustable según el problema
+        random_solution = np.random.rand(num_variables) * 100 - 95  # Rango de -95 a 5
 
         # Calcular el resultado con la solución aleatoria
         result = np.dot(A, random_solution)
@@ -49,3 +49,4 @@ if solucion is not None:
     print("Solución aproximada encontrada:", solucion)
 else:
     print("No se encontró una solución en el número de iteraciones dado.")
+
