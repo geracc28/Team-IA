@@ -91,7 +91,7 @@ def clic_casilla(event):
 # Función principal para el desarrollo del juego
 def juego(matriz, turno, persona, computador):
     if ganar(matriz):
-        print("**Gana el Jugador**" if if (turno - 1) % 2 == 0 else "**Gana el Computador**")
+        print("**Gana el Jugador**" if (turno - 1) % 2 == 0 else "**Gana el Computador**")
         return True
     elif empate(matriz):
         print("**Empate**")
@@ -115,11 +115,11 @@ def main():
     global matriz, turno, persona, computador, canvas, ventana
     ventana = tk.Tk()
     ventana.title("Michi Tonto")
-    ventana.geometry("800x600+10+50")
-    canvas = tk.Canvas(ventana, width=800, height=600, background='goldenrod')
+    ventana.geometry("600x625+10+50")
+    canvas = tk.Canvas(ventana, width=600, height=600, background='goldenrod')
     canvas.pack()
 
-    boton_jugar = Button(ventana, text="Jugar", command=reiniciar)
+    boton_jugar = Button(ventana, text="Reiniciar", command=reiniciar)
     boton_jugar.pack(side=LEFT)
 
     boton_salir = Button(ventana, text="Salir", command=salir)
