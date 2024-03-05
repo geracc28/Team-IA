@@ -19,7 +19,7 @@ def random_search(A, B, num_iterations=1000000, tolerancia=10):
 
     for _ in range(num_iterations):
         # Generar un conjunto aleatorio de valores para las variables
-        random_solution = np.random.rand(num_variables) * 100 - 100  # Rango de -100 a 100
+        random_solution = np.random.rand(num_variables) * 200 - 100  # Rango de -100 a 100
 
         # Calcular el resultado con la solución aleatoria
         result = np.dot(A, random_solution)
