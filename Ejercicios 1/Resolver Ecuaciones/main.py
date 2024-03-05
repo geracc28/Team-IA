@@ -1,3 +1,9 @@
+# Integrantes del equipo
+#   Cervantes Cocom Gerardo Onasis
+#   Díaz Pérez Ailyn Magali
+#   Luna Márquez José Antonio
+#   Salinas Monroy America Joana 
+
 import numpy as np
 
 def random_search(A, B, num_iterations=1000000, tolerancia=10):

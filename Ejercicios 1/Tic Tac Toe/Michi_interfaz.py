@@ -1,3 +1,9 @@
+# Integrantes del equipo
+#   Cervantes Cocom Gerardo Onasis
+#   Díaz Pérez Ailyn Magali
+#   Luna Márquez José Antonio
+#   Salinas Monroy America Joana 
+
 #fusion de codigo de Maga y mio, aún no terminado, le faltan afinar detallitos
 import tkinter as tk
 from tkinter import *
