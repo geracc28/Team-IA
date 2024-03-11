@@ -96,4 +96,8 @@ El tiempo de la primera versión del código proporcionada por el profesor con u
 Para la versión de 7x7 fue: 0.004004478454589844 seconds
 Y para la versión más extendida de 10x10 fue: 0.010125160217285156 seconds
 
+Pruebas Mark 
+Para la version 5x5 de tres pruebas respectivamente el tiempo fue: 0.00010561943054199219 seconds, 0.0001671314239501953 seconds, 0.00020837783813476562
+Para la version 10x10 de tres pruebas respectivamente el tiempo fue: 0.00037026405334472656 seconds, 0.0006749629974365234 seconds, 0.00042557716369628906 seconds
+
 '''
