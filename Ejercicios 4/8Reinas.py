@@ -113,20 +113,4 @@ if __name__ == "__main__":
             fila = 0
         print("+_______________________________________________+")
         imprimir_matriz(tablero)
-    print("Si!!! Encontré la solución")         
-    """"        
-        for columna in range(len(tablero)):
-            if tablero[fila][columna] == 0:
-                colocaReina(fila, columna, tablero)
-                reinasT = nReinas(tablero)
-                break
-        fila += 1
-  
-        if nReinas(tablero) < 8:
-            tableroBlanco(tablero)
-            columna = 0
-            for fila in range(len(tablero)):
-                if tablero[fila][columna] == 0:
-                    colocaReina(fila, columna, tablero)
-                    break
-"""
+    print("Si!!! Encontré la solución")
