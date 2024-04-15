@@ -9,7 +9,7 @@ def nReinas(matriz):
 
 def llenaDiagonales(fila, columna, matriz):
     tam = len(matriz)
-    # Superior izq
+    # Superior izq 
     for i, j in zip(range(fila-1, -1, -1), range(columna-1, -1, -1)):
         if matriz[i][j] != "R":
             matriz[i][j] = "-"
