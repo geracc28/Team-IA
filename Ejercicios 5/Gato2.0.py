@@ -170,16 +170,22 @@ def clic_casilla(event):
 # Función principal para el desarrollo del juego
 def juego(matriz, turno):
     global casillas_marcadas
-    if ganar(matriz):
-        print("**Gana el Jugador**" if (turno - 1) % 2 == 0 else "**Gana el Computador**")
+    ganador = ganar(matriz)
+    if ganador:
+        # Determinar el ganador basado en el turno actual
+        if (turno - 1) % 2 == 0:
+            print("**Gana el Jugador**")
+        else:
+            print("**Gana el Computador**")
+        
+        # Marcar todas las casillas vacías como ocupadas al final del juego
         posiciones_vacias = [i for i, x in enumerate(matriz) if x == " "]
         casillas_marcadas.extend(posiciones_vacias)
         return True
     elif empate(matriz):
         print("**Empate**")
         return True
-
-    return False
+    return False  # Continuar el juego si no hay ganador ni empate
 
 # Función para reiniciar el juego y limpiar el tablero
 def reiniciar():
