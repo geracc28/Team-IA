@@ -27,15 +27,90 @@ def movimiento_jugador(matriz, casilla, persona, casillas_marcadas):
     matriz[casilla] = persona
     casillas_marcadas.append(casilla)
         
+# Función para determinar el resultado del juego mediante una heurística
+def resultado_heuristico(matriz):
+    ganar_condiciones = [(0, 1, 2), (3, 4, 5), (6, 7, 8),
+                         (0, 3, 6), (1, 4, 7), (2, 5, 8),
+                         (0, 4, 8), (2, 4, 6)]
+    
+    puntaje_computadora = 0
+    puntaje_persona = 0
+    
+    for a, b, c in ganar_condiciones:
+        linea = [matriz[a], matriz[b], matriz[c]]
+        count_computadora = linea.count(computador)
+        count_persona = linea.count(persona)
+        
+        # Evaluar líneas abiertas y amenazas inminentes para la computadora
+        if count_computadora == 2 and count_persona == 0:
+            puntaje_computadora += 10
+        elif count_computadora == 1 and count_persona == 0:
+            puntaje_computadora += 1
+        elif count_computadora == 0 and count_persona == 2:
+            puntaje_persona += 10
+        elif count_computadora == 0 and count_persona == 1:
+            puntaje_persona += 1
+            
+    # Asignar puntajes adicionales basados en la importancia de las casillas
+    puntajes_casillas = [0, 1, 2, 1, 2, 3, 2, 3, 4]
+    for i, valor in enumerate(matriz):
+        if valor == computador:
+            puntaje_computadora += puntajes_casillas[i]
+        elif valor == persona:
+            puntaje_persona += puntajes_casillas[i]
+            
+    if puntaje_computadora > puntaje_persona:
+        return 1 # Gana el Computador
+    elif puntaje_persona > puntaje_computadora:
+        return -1 # Gana el Jugador
+    elif " " not in matriz:
+        return 0 # Empate
+    else:
+        return 0 # En juego
 
+def generar_todos_los_movimientos(matriz, turno, jugador):
+    movimientos = []
+    for i, casilla in enumerate(matriz):
+        if casilla == " ":
+            nueva_matriz = matriz.copy()
+            nueva_matriz[i] = jugador
+            movimientos.append((i, nueva_matriz))
+            if not ganar(nueva_matriz) and " " in nueva_matriz:
+                siguiente_turno = turno + 1
+                siguiente_jugador = "X" if jugador == "O" else "O"
+                movimientos += generar_todos_los_movimientos(nueva_matriz, siguiente_turno, siguiente_jugador)
+    return movimientos
+
+def elegir_mejor_movimiento(matriz, turno, jugador):
+    movimientos = generar_todos_los_movimientos(matriz, turno, jugador)
+    mejores_movimientos = []
+    mejor_puntaje = float('-inf') if jugador == 'X' else float('inf')
+    
+    for movimiento in movimientos:
+        _, nueva_matriz = movimiento
+        puntaje = evaluar_movimiento(nueva_matriz)
+        
+        if (jugador == 'X' and puntaje > mejor_puntaje) or (jugador == 'O' and puntaje < mejor_puntaje):
+            mejor_puntaje = puntaje
+            mejores_movimientos = [movimiento]
+        elif puntaje == mejor_puntaje:
+            mejores_movimientos.append(movimiento)
+            
+    return random.choice(mejores_movimientos) if mejores_movimientos else None
+
+def evaluar_movimiento(matriz):
+    return resultado_heuristico(matriz)
 
 # Función para el movimiento del computador
 def movimiento_computador(matriz, computador):
     posiciones_vacias = [i for i, x in enumerate(matriz) if x == " "]
-    if posiciones_vacias:
-        casilla = random.choice(posiciones_vacias) #se posiciona en casillas vacías aleatorias
-        matriz[casilla] = computador
-        casillas_marcadas.append(casilla)
+    # Primer cambio importante para hacer a la computadora inteligente
+    posibles_mov = []
+    for casilla in posiciones_vacias:
+        nueva_matriz = matriz.copy()
+        nueva_matriz[casilla] = computador
+        posibles_mov.append((casilla, nueva_matriz))
+    return posibles_mov
 
 # Función para reiniciar el juego
 def reiniciar_juego():
@@ -57,7 +132,7 @@ def dibuja_tablero(canvas, matriz):
 
 # Función para manejar el clic en la casilla
 def clic_casilla(event):
-    global turno
+    global turno, matriz
     x, y = event.x, event.y
     casilla = None
     if x < 200:
@@ -85,9 +160,11 @@ def clic_casilla(event):
         movimiento_jugador(matriz, casilla, persona, casillas_marcadas)
         turno += 1
         if not juego(matriz, turno):
-            movimiento_computador(matriz, computador)
-            turno += 1
-            juego(matriz, turno)
+            mejor_movimiento = elegir_mejor_movimiento(matriz, turno, computador)
+            if mejor_movimiento:
+                _, matriz = mejor_movimiento
+                turno += 1
+                juego(matriz, turno)
         dibuja_tablero(canvas, matriz)
 
 # Función principal para el desarrollo del juego
