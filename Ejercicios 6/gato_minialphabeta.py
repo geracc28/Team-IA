@@ -1,0 +1,1 @@
+Gato minimax-alphabeta
