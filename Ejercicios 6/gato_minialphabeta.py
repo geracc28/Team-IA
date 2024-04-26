@@ -20,6 +20,9 @@ def marcador(estado):
         if estado[i] == ['x'] * 3:
             return 'x'
         if estado[i] == ['o'] * 3:
+            
+            
+            
             return 'o'
         if estado[0][i] != ' ' and estado[0][i] == estado[1][i] and estado[1][i] == estado[2][i]:
             return estado[0][i]
@@ -32,7 +35,7 @@ def marcador(estado):
     if estado[0][2] != ' ' and estado[0][2] == estado[1][1] and estado[1][1] == estado[2][0]:
         return estado[0][2]
 
-    if ' ' not in estado[0] + estado[1] + estado[2]:
+    if ' ' not in estado[0] + estado[1] + estado[2]:                                                                                                         
         return '-'
 
     return ' '
@@ -48,6 +51,7 @@ def jugar_max_alpha_beta(estado, alfa, beta):
         return (-1, (-1, -1))
     if final == '-':
         return (0, (-1, -1))
+
 
     mayor = -2
     for i in range(3):
@@ -91,21 +95,36 @@ def jugar_min_alpha_beta(estado, alfa, beta):
     return (menor, mejor_movimiento)
 
 def jugar_ia_vs_humano_alpha_beta(estado):
-    humano(estado)  # Turno del jugador
-    mostrar_tablero(estado)
-    puntaje, movimiento = jugar_min_alpha_beta(estado, float("-inf"), float("inf"))  # Turno de la IA
-    estado[movimiento[0]][movimiento[1]] = 'o'
-    mostrar_tablero(estado)
+    while True:
+        humano(estado)  # Turno del jugador
+        mostrar_tablero(estado)
 
-    final = marcador(estado)
-    if final == 'x':
-        print("¡Has ganado!")
-    elif final == 'o':
-        print("¡La IA ha ganado!")
-    elif final == '-':
-        print("¡Ha sido un empate!")
-    else:
-        jugar_ia_vs_humano_alpha_beta(estado)
+        final = marcador(estado)
+        if final == 'x':
+            print("¡Has ganado!")
+            return
+        elif final == 'o':
+            print("¡La IA ha ganado!")
+            return
+        elif final == '-':
+            print("¡Ha sido un empate!")
+            return
+
+        puntaje, movimiento = jugar_min_alpha_beta(estado, float("-inf"), float("inf"))  # Turno de la IA
+        estado[movimiento[0]][movimiento[1]] = 'o'
+        mostrar_tablero(estado)
+
+        final = marcador(estado)
+        if final == 'x':
+            print("¡Has ganado!")
+            return
+        elif final == 'o':
+            print("¡La IA ha ganado!")
+            return
+        elif final == '-':
+            print("¡Ha sido un empate!")
+            return
+
 
 def humano(estado):
     # |1|2|3|
