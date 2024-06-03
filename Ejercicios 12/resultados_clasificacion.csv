@@ -1,0 +1,23 @@
+Dataset,Clasificador,Precisión,Matriz de Confusión
+Iris,Naive Bayes,1.0,"            setosa  versicolor  virginica
+setosa          16           0          0
+versicolor       0          18          0
+virginica        0           0         11"
+Iris,Redes Bayesianas,0.9777777777777777,"            setosa  versicolor  virginica
+setosa          16           0          0
+versicolor       0          18          0
+virginica        0           1         10"
+Wine,Naive Bayes,0.9444444444444444,"         class_0  class_1  class_2
+class_0       19        0        0
+class_1        2       19        1
+class_2        0        0       13"
+Wine,Redes Bayesianas,0.9444444444444444,"         class_0  class_1  class_2
+class_0       19        0        0
+class_1        2       19        1
+class_2        0        0       13"
+Breast Cancer,Naive Bayes,0.9239766081871345,"           malignant  benign
+malignant         57       6
+benign             7     101"
+Breast Cancer,Redes Bayesianas,0.9239766081871345,"           malignant  benign
+malignant         56       7
+benign             6     102"
