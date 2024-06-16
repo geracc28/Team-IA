@@ -1,0 +1,14 @@
+Dataset,MLP Hold-Out 70/30 Accuracy,MLP 10-Fold CV Accuracy,RBF Hold-Out 70/30 Accuracy,RBF 10-Fold CV Accuracy,MLP Hold-Out 70/30 Confusion Matrix,MLP 10-Fold CV Confusion Matrix,RBF Hold-Out 70/30 Confusion Matrix,RBF 10-Fold CV Confusion Matrix
+Iris,100.0,95.33333333333334,100.0,97.33333333333334,"[[19  0  0]
+ [ 0 13  0]
+ [ 0  0 13]]",,"[[19  0  0]
+ [ 0 13  0]
+ [ 0  0 13]]",
+Wine,98.14814814814815,53.49673202614379,98.14814814814815,68.10457516339869,"[[19  0  0]
+ [ 0 20  1]
+ [ 0  0 14]]",,"[[19  0  0]
+ [ 0 21  0]
+ [ 0  1 13]]",
+Breast Cancer,98.24561403508771,92.4404761904762,97.6608187134503,91.38784461152882,"[[106   2]
+ [  1  62]]",,"[[106   2]
+ [  2  61]]",
